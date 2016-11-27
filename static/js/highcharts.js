@@ -9,14 +9,14 @@ function requestData() {
         url: '/live-data',
         success: function(point) {
             var series = chart.series[0],
-                shift = series.data.length > 20; // shift if the series is
-                                                 // longer than 20
+                shift = series.data.length > 100; // shift if the series is
+                                                 // longer than 100
 
             // add the point
             chart.series[0].addPoint(point, true, shift);
 
             // call it again after one second
-            setTimeout(requestData, 5000);
+            setTimeout(requestData, 1000);
         },
         cache: false
     });
@@ -42,6 +42,8 @@ $(document).ready(function() {
         yAxis: {
             minPadding: 0.2,
             maxPadding: 0.2,
+			min:0,
+			max:100,
             title: {
                 text: 'Value',
                 margin: 80
